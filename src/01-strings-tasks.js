@@ -278,7 +278,12 @@ function getRectangleString(width, height) {
  *
  */
 function encodeToRot13(str) {
-  throw new Error('Not implemented');
+  return str.replace(/[a-z]/gi, (char) => {
+    if (char.toLowerCase() > 'm') {
+      return String.fromCharCode(char.charCodeAt(0) - 13);
+    }
+    return String.fromCharCode(char.charCodeAt(0) + 13);
+  });
 }
 
 /**
@@ -294,8 +299,8 @@ function encodeToRot13(str) {
  *   isString('test') => true
  *   isString(new String('test')) => true
  */
-function isString(/* value */) {
-  throw new Error('Not implemented');
+function isString(value) {
+  return typeof value === 'string' || value instanceof String;
 }
 
 
@@ -323,8 +328,61 @@ function isString(/* value */) {
  *   'Q♠' => 50
  *   'K♠' => 51
  */
-function getCardId(/* value */) {
-  throw new Error('Not implemented');
+function getCardId(value) {
+  const map = new Map();
+  map.set('A♣', 0);
+  map.set('2♣', 1);
+  map.set('3♣', 2);
+  map.set('4♣', 3);
+  map.set('5♣', 4);
+  map.set('6♣', 5);
+  map.set('7♣', 6);
+  map.set('8♣', 7);
+  map.set('9♣', 8);
+  map.set('10♣', 9);
+  map.set('J♣', 10);
+  map.set('Q♣', 11);
+  map.set('K♣', 12);
+  map.set('A♦', 13);
+  map.set('2♦', 14);
+  map.set('3♦', 15);
+  map.set('4♦', 16);
+  map.set('5♦', 17);
+  map.set('6♦', 18);
+  map.set('7♦', 19);
+  map.set('8♦', 20);
+  map.set('9♦', 21);
+  map.set('10♦', 22);
+  map.set('J♦', 23);
+  map.set('Q♦', 24);
+  map.set('K♦', 25);
+  map.set('A♥', 26);
+  map.set('2♥', 27);
+  map.set('3♥', 28);
+  map.set('4♥', 29);
+  map.set('5♥', 30);
+  map.set('6♥', 31);
+  map.set('7♥', 32);
+  map.set('8♥', 33);
+  map.set('9♥', 34);
+  map.set('10♥', 35);
+  map.set('J♥', 36);
+  map.set('Q♥', 37);
+  map.set('K♥', 38);
+  map.set('A♠', 39);
+  map.set('2♠', 40);
+  map.set('3♠', 41);
+  map.set('4♠', 42);
+  map.set('5♠', 43);
+  map.set('6♠', 44);
+  map.set('7♠', 45);
+  map.set('8♠', 46);
+  map.set('9♠', 47);
+  map.set('10♠', 48);
+  map.set('J♠', 49);
+  map.set('Q♠', 50);
+  map.set('K♠', 51);
+  return map.get(value);
 }
 
 
